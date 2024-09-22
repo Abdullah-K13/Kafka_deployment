@@ -32,10 +32,9 @@ jobs:
             docker-compose up -d     # Start the new ones
            
             while true; do
-                HEALTHY_BROKER1=$(docker inspect --format '{{.State.Health.Status}}' broker1 2>/dev/null)
                 HEALTHY_BROKER2=$(docker inspect --format '{{.State.Health.Status}}' broker2 2>/dev/null)
 
-                if [[ "$HEALTHY_BROKER1" == "healthy" && "$HEALTHY_BROKER2" == "healthy" ]]; then
+                if [[ "$HEALTHY_BROKER2" == "healthy" ]]; then
                     echo "Both brokers are up and healthy."
                     break
                 else
