@@ -20,7 +20,7 @@ def produce_data(topic, data):
 data = {
     'id': 1,
     'name': 'Test Message',
-    'value': 'testing deployment'
+    'value': 'testing 123'
 }
 
 produce_data('test_topic', data)
