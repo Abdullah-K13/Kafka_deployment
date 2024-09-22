@@ -44,5 +44,6 @@ jobs:
                 fi
             done
             echo "Running the test script..."
+            source venv/bin/activate
             python3 test.py
 
