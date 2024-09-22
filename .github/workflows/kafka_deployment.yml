@@ -1,0 +1,32 @@
+name: Deploy Docker Compose to VPS
+
+on:
+  push:
+    branches:
+      - main  # Trigger this action on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Install SSH client
+      - name: Install SSH Client
+        run: sudo apt-get update && sudo apt-get install -y openssh-client
+
+      # Step 3: SSH into the VPS and pull the latest code
+      - name: Deploy Docker Compose on VPS
+        uses: appleboy/ssh-action@v0.1.0
+        with:
+          host: 158.220.124.0
+          username: root
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd ./deployment  # Navigate to the directory where you want to deploy
+            git pull origin main     # Pull the latest changes
+            docker-compose down      # Stop running containers
+            docker-compose up -d     # Start the new ones
