@@ -99,7 +99,6 @@ services:
       retries: 5
 
 
-
   control-center:
     image: confluentinc/cp-enterprise-control-center:7.4.0
     hostname: control-center
@@ -120,6 +119,13 @@ services:
       CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
       CONFLUENT_METRICS_TOPIC_REPLICATION: 1
+      CONTROL_CENTER_HTTP_SSL_ENABLED: 'true'  # Enable HTTPS
+      CONTROL_CENTER_HTTP_SSL_KEYSTORE_LOCATION: "./keystore.jks"  # Path to your keystore
+      CONTROL_CENTER_HTTP_SSL_KEYSTORE_PASSWORD: "13122002"  # Change to your keystore password
+      CONTROL_CENTER_HTTP_SSL_KEY_PASSWORD: "13122002"  # Change to your key password
+      CONTROL_CENTER_HTTP_BASIC_AUTH_ENABLED: 'true'  # Enable Basic Auth
+      CONTROL_CENTER_HTTP_BASIC_AUTH_USER: "admin"  # Change to your desired username
+      CONTROL_CENTER_HTTP_BASIC_AUTH_PASSWORD: "admin"  # Change to your desired password
       PORT: 9021
     networks:
       - confluent
@@ -128,7 +134,6 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
-
 
 
 networks:
