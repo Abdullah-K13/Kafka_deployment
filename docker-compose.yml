@@ -98,6 +98,7 @@ services:
       timeout: 5s
       retries: 5
 
+
   control-center:
     image: confluentinc/cp-enterprise-control-center:7.4.0
     hostname: control-center
@@ -119,9 +120,9 @@ services:
       CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
       CONFLUENT_METRICS_TOPIC_REPLICATION: 1
       CONTROL_CENTER_SSL_KEYSTORE_LOCATION: '/etc/ssl/keystore.jks'  # Path to keystore in the container
-      CONTROL_CENTER_SSL_KEYSTORE_PASSWORD: '13122002'  # Keystore password
+      CONTROL_CENTER_SSL_KEYSTORE_PASSWORD: 'your_keystore_password'  # Keystore password
       CONTROL_CENTER_SSL_TRUSTSTORE_LOCATION: '/etc/ssl/truststore.jks'  # Path to truststore in the container
-      CONTROL_CENTER_SSL_TRUSTSTORE_PASSWORD: '13122002'  # Truststore password
+      CONTROL_CENTER_SSL_TRUSTSTORE_PASSWORD: 'your_truststore_password'  # Truststore password
 
     volumes:
       - ./keystore.jks:/etc/ssl/keystore.jks:ro  # Mount the keystore into the container
@@ -148,6 +149,7 @@ services:
       - control-center
     networks:
       - confluent
+    
 
 networks:
   confluent:
